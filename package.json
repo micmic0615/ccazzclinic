@@ -1,0 +1,60 @@
+{
+  "name": "cerebrum-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "jest": {
+    "testEnvironment": "node",
+    "globals": {
+      "NODE": {}
+    },
+    "setupFiles": [
+      "./tests/unit/setup.js"
+    ],
+    "coverageDirectory": "build/logs/"
+  },
+  "scripts": {
+    "test": "jest --watchAll",
+    "test_builder": "jest --coverage",
+    "start": "nodemon server"
+  },
+  "author": "Zyrus A. Reyes",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.3",
+    "create-html": "^3.1.0",
+    "crypto": "^1.0.1",
+    "cryptr": "^3.0.0",
+    "csurf": "^1.9.0",
+    "edge-cs": "^1.2.1",
+    "exceljs": "^0.4.13",
+    "express": "^4.15.2",
+    "express-session": "^1.15.3",
+    "glob": "^7.1.1",
+    "helmet": "^3.10.0",
+    "html-pdf": "^2.1.0",
+    "html2xlsx": "^0.4.0",
+    "jsonfile": "^4.0.0",
+    "moment": "^2.18.1",
+    "mongo-mock": "^3.0.0",
+    "mongoose": "^4.10.8",
+    "multer": "^1.3.0",
+    "mysql": "^2.13.0",
+    "node-cron": "^1.2.1",
+    "passport": "^0.3.2",
+    "passport-google": "^0.3.0",
+    "passport-google-oauth2": "^0.1.6",
+    "request": "^2.81.0",
+    "sift": "^5.1.0",
+    "slack-node": "^0.1.8",
+    "socket.io": "^1.7.3",
+    "tunnel-ssh": "^4.1.3",
+    "xlsx": "^0.10.8"
+  },
+  "devDependencies": {
+    "jest": "^22.1.4"
+  }
+}
