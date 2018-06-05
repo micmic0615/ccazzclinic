@@ -1,10 +1,10 @@
-var compression = require('compression')
+// var compression = require('compression')
 var express = require('express');
 var app = express();
 var path = require('path');
 
 
-app.use(compression())
+// app.use(compression())
 
 app.use(express.static(__dirname + '/src'));
 
