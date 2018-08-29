@@ -1,0 +1,93 @@
+html, body {
+    padding: 0px;
+    margin: 0px;
+}
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/lato-v14-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Lato Regular'), local('Lato-Regular'),
+         url('../fonts/lato-v14-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/lato-v14-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/lato-v14-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/lato-v14-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/lato-v14-latin-regular.svg#Lato') format('svg'); /* Legacy iOS */
+  }
+
+@font-face {
+    font-family: 'Cutive';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/cutive-v9-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Cutive'), local('Cutive-Regular'),
+         url('../fonts/cutive-v9-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/cutive-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/cutive-v9-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/cutive-v9-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/cutive-v9-latin-regular.svg#Cutive') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/oswald-v16-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Oswald Regular'), local('Oswald-Regular'),
+         url('../fonts/oswald-v16-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/oswald-v16-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/oswald-v16-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/oswald-v16-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/oswald-v16-latin-regular.svg#Oswald') format('svg'); /* Legacy iOS */
+  }
+
+* {
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.f_cutive {
+    font-family: 'Cutive', serif;
+    * {
+        font-family: 'Cutive', serif;
+    }
+}
+
+.f_oswald {
+    font-family: 'Oswald', serif;
+    * {
+        font-family: 'Oswald', serif;
+    }
+}
+
+.f_lato {
+    font-family: 'Lato', serif;
+    * {
+        font-family: 'Lato', serif;
+    }
+}
+
+
+.content_container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+#main_container {
+    background-color: #fdfbed;
+
+    .debug_window {
+        position: fixed;
+        width: 260px;
+        top: 75px;
+        z-index: 1001;
+        background-color: rgba(255,125,0,0.65);
+        padding: 10px;
+        opacity: 1;
+        font-size: 14px;
+        font-weight: bold;
+        transition: 0.35s right ease-in-out;
+    }
+}
