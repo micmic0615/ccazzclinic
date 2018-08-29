@@ -5,14 +5,14 @@ import { Route, Redirect, Switch, Link } from 'react-router-dom';
 import asyncRoute from 'Assets/scripts/asyncRoute';
 import RouteList from "Src/routeList.js";
 
-import HeaderHome from "Partials/Header/Home";
-import HeaderAll from "Partials/Header/All";
+import Header from "Partials/Header";
 import Footer from "Partials/Footer";
 import Modal from "Partials/Modal";
 
 import { showModal } from "Actions/Modal.js";
 import LoadingIcon from 'Elements/LoadingIcon';
 import ErrorPage from 'Pages/Error'
+
 
 let asyncPages = {};
 RouteList.forEach((name) => {
@@ -74,12 +74,7 @@ class PageFrame extends Component {
 
 	render() {
 		return (<div>
-			{
-				this.props.location.pathname == "/" ? 
-				<HeaderHome store={this.props.store} route={{ path: this.props.path, history: this.props.history, location: this.props.location }} />:
-				<HeaderAll store={this.props.store} route={{ path: this.props.path, history: this.props.history, location: this.props.location }} />	
-			}
-			
+			<Header {...this.props} />
 			<div id="main_container">
 				<div className="debug_window" style={{right: this.props.state.debugWindow ? "10px" : "-300px"}}>
 					<ul>
@@ -95,7 +90,7 @@ class PageFrame extends Component {
 				{this.props.children}
 				<Modal />
 			</div>
-			<Footer route={{ path: this.props.path, history: this.props.history, location: this.props.location }} />
+			<Footer {...this.props} />
 		</div>)
 	}
 }

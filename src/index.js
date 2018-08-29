@@ -7,7 +7,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from './store';
 import App from './app.js'
 
-import 'Assets/css/main.css';
+import 'Assets/css/main.scss';
 
 // import 'sanitize.css/sanitize.css';
 // import './assets/css/main.css';

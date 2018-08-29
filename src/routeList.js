@@ -19,9 +19,6 @@ Object.keys(Categories).forEach((category)=>{
 	])
 })
 
-console.log(routeList)
-
-
 export default routeList
 
 // ,[

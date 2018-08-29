@@ -1,0 +1,103 @@
+.footer {
+    width: 100%;
+    height: 265px;
+    position: relative;
+
+    .content_container {
+        padding-top: 60px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 1;
+
+        .link_list {
+            width: 100%;
+            flex: 1;
+            display: flex;
+
+            > .logo {
+                height: 100%;
+                display: flex;
+                align-items: center;
+
+                > img {
+                    width: 251px;
+                    height: auto;
+                }
+            }
+
+            > .nav_1 {
+                flex-grow: 1;
+                height: 100%;
+                display: flex;
+
+                .item_1 {
+                    height: 100%;
+                    font-size: 12px;
+                    letter-spacing: 2px;
+                    flex-grow: 1;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    a {
+                        color: #f6e25e;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        font-weight: 700;
+                    }
+
+                    a:hover {
+                        text-decoration: underline;
+                    }
+
+                    .index_1 {
+                        width: 100%;
+                    }
+
+                    .nav_2 {
+                        width: 100%;
+                        padding-top: 2px;
+                        border-radius: 3px;
+                        top: 45px;
+
+                        .item_2 {
+                            padding: 2px 0px;
+
+                            a {
+                                color: #fff;
+                                text-transform: none;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        .streak {
+            width: 100%;
+            height: 1px;
+            display: flex;
+            justify-content: center;
+
+            .grd_gold_streak {
+                width: 100%;
+                height: 100%;
+                max-width: 720px;
+            }
+        }
+        .reserved_rights {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f6e25e;
+            text-align: center;
+            font-size: 11px;
+        }
+    }
+}
