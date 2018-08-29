@@ -73,7 +73,7 @@ class PageFrame extends Component {
 	}
 
 	render() {
-		return (<div>
+		return (<div id="main_wrapper">
 			<Header {...this.props} />
 			<div id="main_container">
 				<div className="debug_window" style={{right: this.props.state.debugWindow ? "10px" : "-300px"}}>
