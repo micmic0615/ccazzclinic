@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import './style.scss';
 
 import Button from "Elements/Button/"
-import Featured from "Elements/Featured/"
-import Banner from "Elements/Banner/"
 
 
 class Home extends Component {
@@ -15,28 +13,19 @@ class Home extends Component {
 				image: "/img/banner_1.jpg",
 				title: "The doctors for your skin needs.",
 				text: "CCAZZ CLINIC is your professional dermatologic, mohs micrographic, and cosmetic surgery center in the Philippines.",
-				button: {
-					text: "MEET THE DOCTORS",
-					onClick: ()=>{}
-				}
+				button: "MEET THE DOCTORS"
 			},
 			{
 				image: "/img/banner_2.jpg",
 				title: "Keep in touch, book an appointment today. ",
 				text: "Meet us soon so we can discuss your skin needs. See our schedules and clinic locations to book an appointment today.",
-				button: {
-					text: "SEND US A MESSAGE",
-					onClick: ()=>{}
-				}
+				button: "SEND US A MESSAGE"
 			},
 			{
 				image: "/img/banner_3.jpg",
 				title: "Know about the best treatment for skin cancer.",
 				text: "Mohs Micrographic Surgery (MMS) offers the highest cure rate for most cases of skin cancer. It is the microscopically-controlled excision of skin cancer. ",
-				button: {
-					text: "LEARN MORE",
-					onClick: ()=>{}
-				}
+				button: "LEARN MORE"
 			},
 		];
 
@@ -57,11 +46,55 @@ class Home extends Component {
 				text: "We value the sanctity of a contract between a patient and CCAZZ, and the principle of privileged communication. "
 			}
 		]
+
+		this.state = {
+			banner_active: 0
+		}
+	}
+
+	componentDidMount = ()=>{
+		let autoRotateBanner = ()=>{
+			setTimeout(()=>{
+				let auto_value = this.state.banner_active + 1;
+				if (auto_value > this.banner_list.length - 1){auto_value = 0}
+				this.setState({banner_active: auto_value}, autoRotateBanner)
+			}, 5000)
+		}
+
+		autoRotateBanner()
 	}
 
 	render() {
 		return (<div className="page_home">
-			<Banner images={this.banner_list} />
+			<div className="banner" >
+				<div className="mask">
+					<div className="canvas" style={{width: (this.banner_list.length*100) + "%", left: (this.state.banner_active*-100) + "%"}}>
+						{(()=>{
+							return this.banner_list.map((banner_item)=>{
+								return <div className="slide" style={{backgroundImage: "url("+_.imgPath(banner_item.image)+")"}}>
+									<div className="content_container">
+										<div className="featured">
+											<div className="title f_neuzeitheavy">{banner_item.title}</div>
+											<div className="featured_text f_opensans">{banner_item.text}</div>
+											<Button className="sz_large cl_dark">{banner_item.button}</Button>
+										</div>
+									</div>
+								</div>
+							});							
+						})()}
+					</div>
+
+					<div className="slide_btn_container">
+						{(()=>{
+							return this.banner_list.map((banner_item, index)=>{
+								return 	<div className={"slide_btn " + (index == this.state.banner_active ? "active" : "")} onClick={()=>{this.setState({banner_active: index})}}></div>
+							});							
+						})()}
+
+						
+					</div>
+				</div>
+			</div>
 			
 			<div className="section">
 				<div className="content_container">
@@ -110,17 +143,23 @@ class Home extends Component {
 					</div>
 
 					<div className="segment" style={{flexDirection:"row-reverse", justifyContent:"normal"}}>
-						<Featured 
-							title={"Leading in MOHS Micrographic Surgery (MMS)"}
-							subtitle={"The best treatment for skin cancer"}
-							text={"Mohs Micrographic Surgery (MMS) offers the highest cure rate for most cases of skin cancer. It is the microscopically-controlled excision of skin cancer."}
-							button={{
-								text: "Learn More",
-								onClick: ()=>{
-									
-								}
-							}}
-						/>
+						<div className="featured">
+							<div className="title f_neuzeitheavy">
+								Leading in MOHS Micrographic Surgery (MMS)
+							</div>
+
+							<div className="featured_subtitle f_neuzeit">
+								The best treatment for skin cancer
+							</div>
+
+							<div className="featured_text f_opensans">
+								Mohs Micrographic Surgery (MMS) offers the highest cure rate for most cases of skin cancer. It is the microscopically-controlled excision of skin cancer. 
+							</div>
+
+							<Button className="sz_large cl_dark">
+								Learn More
+							</Button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -136,18 +175,23 @@ class Home extends Component {
 					</div>
 
 					<div className="segment" style={{flexDirection:"row", justifyContent:"normal"}}>
-						<Featured 
-							style={{textAlign:"right"}}
-							title={"Keep in touch"}
-							subtitle={"Book an appointment today"}
-							text={"Meet us soon so we can discuss your skin needs. See our schedules and clinic locations to book an appointment today."}
-							button={{
-								text: "Send Us A Message",
-								onClick: ()=>{
-									
-								}
-							}}
-						/>
+						<div className="featured" style={{textAlign:"right"}}>
+							<div className="title f_neuzeitheavy">
+								Keep in touch
+							</div>
+
+							<div className="featured_subtitle f_neuzeit">
+								Book an appointment today
+							</div>
+
+							<div className="featured_text f_opensans">
+								Meet us soon so we can discuss your skin needs. See our schedules and clinic locations to book an appointment today.
+							</div>
+
+							<Button className="sz_large cl_dark" style={{float: "right"}}>
+								Send Us A Message
+							</Button>
+						</div>
 					</div>
 				</div>
 			</div>

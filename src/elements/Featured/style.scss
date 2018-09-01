@@ -1,0 +1,26 @@
+.featured {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    width: 480px;
+    padding: 20px;
+    border-radius: 8px;
+
+    .title {
+        font-size: 36px;
+        color: #555555;
+        font-weight: 900;
+        margin-bottom: 40px;
+    }
+
+    .featured_subtitle {
+        color: #680b5b;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .featured_text {
+        color: #555555;
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+}

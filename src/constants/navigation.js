@@ -8,17 +8,11 @@ export default [
         link: "/our-services",
         children: [
             {
-                name: "Service 1",
-                link: "/service-1"
+                folder: "OurServicesChild",
+                name: "MOHS Surgery",
+                link: "/mohs-surgery"
             },
-            {
-                name: "Service 2",
-                link: "/service-2"
-            },
-            {
-                name: "Service 3",
-                link: "/service-3"
-            },
+           
         ]
     },
     {
@@ -26,16 +20,14 @@ export default [
         link: "/the-doctors",
         children: [
             {
-                name: "Doctor 1",
-                link: "/doctor-1"
+                folder: "TheDoctorsChild",
+                name: "Dr. Cynthia P. Ciriaco-Tan",
+                link: "/cynthia-p-ciriaco-tan"
             },
             {
-                name: "Doctor 2",
-                link: "/doctor-2"
-            },
-            {
-                name: "Doctor 3",
-                link: "/doctor-3"
+                folder: "TheDoctorsChild",
+                name: "Dr. Zuriel K. Tan",
+                link: "/zuriel-k-tan"
             },
         ]
     },

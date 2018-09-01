@@ -1,4 +1,4 @@
-.page_home {
+.page_the_doctos {
     width: 100%;
     height: 100%;
     margin-bottom: 85px;
@@ -25,27 +25,30 @@
                 justify-content: center;
 
                 .title {
-                    font-size: 30px;
-                    color: #555555;
+                    font-size: 18px;
+                    color: #680b5b;
                     font-weight: 900;
                     letter-spacing: 2px;
-                    margin-top: 40px;
+                    margin-top: 20px;
                     margin-bottom: 60px;
                 }
             }
 
             .segment.column {
                 display: flex;
+                position: relative;
 
                 .treatment {
-                    width: 270px;
+                    width: 360px;
                     padding: 0px 20px;
+                    margin: 0px 40px;
                     flex-direction: column;
                     text-align: center;
+               
 
                     .vector {
-                        width: 106px;
-                        height: 106px;
+                        width: auto;
+                        height: auto;
                         position: relative;
                         margin: 0 auto;
                         margin-bottom: 40px;
@@ -54,15 +57,31 @@
                     .treatment_title {
                         margin: 0 auto;
                         padding: 0px 20px;
+                        color: #555;
+                        margin-bottom: 20px;
+                        font-weight: 900;
+                        font-size: 24px;
+                    }
+
+                    .treatment_subtitle {
+                        margin: 0 auto;
+                        padding: 0px 20px;
                         color: #680b5b;
                         margin-bottom: 20px;
-                        font-size: 18px;
+                        font-size: 14px;
                     }
 
                     .treatment_text {
                         margin: 0 auto;
                         color: #555555;
                         font-size: 14px;
+                        margin-bottom: 70px;
+                    }
+
+                    .ccazz_btn  {
+                        margin: 0 40px;
+                        position: absolute;
+                        bottom: 0px;
                     }
                 }
             }

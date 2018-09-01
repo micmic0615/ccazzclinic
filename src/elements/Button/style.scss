@@ -24,9 +24,22 @@
     letter-spacing: 2px;
 }
 
+.ccazz_btn.sz_extralarge {
+    font-size: 18px;
+    min-height: 80px;
+    width: 100%;
+    font-weight: 400;
+    border-radius: 40px;
+}
+
 .ccazz_btn.cl_light {
     background-color: #fee6fb;
     color: #000
+}
+
+.ccazz_btn.cl_pink {
+    background-color: #fee6fb;
+    color: #680b5b
 }
 
 .ccazz_btn.cl_dark {
