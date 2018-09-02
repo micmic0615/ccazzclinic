@@ -1,91 +1,135 @@
-.page_the_doctos {
+.page_the_doctos_child {
     width: 100%;
     height: 100%;
     margin-bottom: 85px;
 
     .section {
         width: 100%;
-        margin-bottom: 80px;
+        margin-bottom: 40px;
         position: relative;
-
-        .bg_section {
-            position: absolute;
-            top: 0px;
-        }
 
         .content_container {
             display: flex;
-            flex-direction: column;
             position: relative;
             z-index: 1;
 
-            .segment {
+            .bio_text {
+                width: 480px;
+            }
+
+            .bio_image {
+                width: 100%;
+                text-align: center;
+
+                img {
+                    position: relative;
+                    top: 80px;
+                    margin: 0 auto;
+                }
+            }
+
+
+            .position_tabs {
+                width: 440px;
+
+                .position_header_container {
+                    width: 440px;
+                    
+                    border-bottom: 1px solid #680b5b;
+                    display: flex;
+
+                    .position_header {
+                        opacity: 0.5;
+                        font-size: 18px;
+                        padding: 10px;
+                        color: #680b5b;
+                        cursor: pointer;
+                    }
+
+                    .position_header.active {
+                        opacity: 1;
+                        border-bottom: 4px solid #680b5b;
+                    }
+                }
+
+                .position_text {
+                    width: 100%;
+                    color: #555;
+                    font-size: 14px;
+                    padding: 10px;
+                }
+            }
+
+            
+            .position_icon_list {
+                padding-left: 60px;
                 width: 100%;
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
 
-                .title {
-                    font-size: 18px;
-                    color: #680b5b;
-                    font-weight: 900;
-                    letter-spacing: 2px;
-                    margin-top: 20px;
-                    margin-bottom: 60px;
-                }
-            }
+                .position_column {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
 
-            .segment.column {
-                display: flex;
-                position: relative;
-
-                .treatment {
-                    width: 360px;
-                    padding: 0px 20px;
-                    margin: 0px 40px;
-                    flex-direction: column;
-                    text-align: center;
-               
-
-                    .vector {
-                        width: auto;
-                        height: auto;
-                        position: relative;
-                        margin: 0 auto;
-                        margin-bottom: 40px;
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 10px
                     }
 
-                    .treatment_title {
-                        margin: 0 auto;
-                        padding: 0px 20px;
+                    p {
+                        width: 100%;
+                        font-size: 14px;
                         color: #555;
-                        margin-bottom: 20px;
-                        font-weight: 900;
-                        font-size: 24px;
-                    }
-
-                    .treatment_subtitle {
-                        margin: 0 auto;
-                        padding: 0px 20px;
-                        color: #680b5b;
-                        margin-bottom: 20px;
-                        font-size: 14px;
-                    }
-
-                    .treatment_text {
-                        margin: 0 auto;
-                        color: #555555;
-                        font-size: 14px;
-                        margin-bottom: 70px;
-                    }
-
-                    .ccazz_btn  {
-                        margin: 0 40px;
-                        position: absolute;
-                        bottom: 0px;
                     }
                 }
             }
-            
+
+
+            .logos_container {
+                width: 100%;
+                flex-direction: column;
+
+                .logo_batch {
+                    width: 100%;
+                    flex-direction: column;
+
+                    .logo_title {
+                        width: 100%;
+                        margin-bottom: 10px;
+                        text-align: center;
+                        color: #680b5b;
+                        font-size: 18px;
+                    }
+
+                    .logo_list{
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        margin-bottom: 60px;
+
+                        .logo_item {
+                            width: 140px;
+                            display: flex;
+                            justify-content: center;
+                            flex-direction: column;
+
+                            img {
+                                width: 120px;
+                                height: 120px;
+                                margin: 0px 10px;
+                            }
+
+                            p {
+                                padding: 0px 20px;
+                                font-size: 12px;
+                                text-align: center
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
