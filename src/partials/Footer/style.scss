@@ -108,6 +108,42 @@
             }
         }
     }
-
-    
 }
+
+@media only screen and (max-width: 720px) {
+    .footer {
+        height: 325px;
+        background-color: #560b57;
+
+        .footer_content {
+            height: 400px;
+            > .bg_img {
+                min-width: 1080px;
+                max-height: 240px;
+                left: 50%;
+                margin-left: -540px;
+            }
+
+           > .content_container {
+               > .link_list {
+                    flex-direction: column;
+
+                    > .logo {
+                        height: 60px;
+                        justify-content: center;
+                        text-align: center;
+
+                        > img {
+                            max-width: 230px;
+                        }
+                    }
+
+                    > .nav_1 {
+                        justify-content: center;
+                        flex-direction: column;
+                    }
+               }
+           }
+        }
+    }
+} 

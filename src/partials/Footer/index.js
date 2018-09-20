@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './style.scss';
 import { Link } from 'react-router-dom';
-import Navigation from 'Constants/navigation.js'
+import Navigation from 'Constants/navigation.js';
+import isMobile from "Assets/scripts/isMobile";
 
 class Footer extends Component {
 	constructor(props){
@@ -17,8 +18,10 @@ class Footer extends Component {
 							<img src={_.imgPath("/img/logo_main.png")} alt=""/>
 						</div>
 						<div className="nav_1">
-							<div className="item_1"></div>
-							<div className="item_1"></div>
+							{isMobile ? null : <Fragment>
+								<div className="item_1"></div>
+								<div className="item_1"></div>
+							</Fragment>}
 							{Navigation.map((nav_item)=>{
 								return <div className="item_1 f_neuzeit">
 									<div className="index_1">
@@ -45,7 +48,7 @@ class Footer extends Component {
 						<div className="grd_gold_streak"></div>
 					</div>
 					<div className="reserved_rights">
-						© All Rights Reserved 2018. Drs. Cynthia & Zuriel Tan and Asso
+						© All Rights Reserved 2018. Drs. Cynthia & Zuriel Tan and Associates
 					</div>
 				</div>
 			</div>
