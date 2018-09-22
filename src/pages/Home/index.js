@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './style.scss';
 
-import Button from "Elements/Button/"
-import Featured from "Elements/Featured/"
-import Banner from "Elements/Banner/"
+import Button from "Elements/Button/";
+import Featured from "Elements/Featured/";
+import Banner from "Elements/Banner/";
+import isMobile from "Assets/scripts/isMobile";
 
 
 class Home extends Component {
@@ -61,7 +62,10 @@ class Home extends Component {
 
 	render() {
 		return (<div className="page_home">
-			<Banner images={this.banner_list} />
+			<Banner 
+				images={this.banner_list} 
+				featuredStyle={isMobile ? {position: "absolute", bottom:"60px"} : {}}
+			/>
 			
 			<div className="section">
 				<div className="content_container">
@@ -100,7 +104,7 @@ class Home extends Component {
 			</div>
 
 			<div className="section">
-				<img src={_.imgPath("/img/home_leading_in_mohs.png")} alt="" className="bg_section" style={{left: "0px"}}/>
+				<img src={_.imgPath("/img/home_leading_in_mohs.png")} alt="" className="bg_section" style={!isMobile ? {left: "0px"} : {right: "0px"}}/>
 
 				<div className="content_container">
 					<div className="segment">
@@ -109,11 +113,13 @@ class Home extends Component {
 						</Button>
 					</div>
 
+						
 					<div className="segment" style={{flexDirection:"row-reverse", justifyContent:"normal"}}>
 						<Featured 
-							title={"Leading in MOHS Micrographic Surgery (MMS)"}
+							title={<div style={isMobile ? {width:"100%", textAlign: "left", } : {}}>{"Leading in MOHS Micrographic Surgery (MMS)"}</div>}
 							subtitle={"The best treatment for skin cancer"}
 							text={"Mohs Micrographic Surgery (MMS) offers the highest cure rate for most cases of skin cancer. It is the microscopically-controlled excision of skin cancer."}
+							style={isMobile ? {marginTop: "460px", marginBottom:"20px"} : {}}
 							button={{
 								text: "Learn More",
 								onClick: ()=>{
@@ -126,7 +132,7 @@ class Home extends Component {
 			</div>
 
 			<div className="section">
-				<img src={_.imgPath("/img/home_keep_in_touch.png")} alt="" className="bg_section" style={{right: "0px"}}/>
+				<img src={_.imgPath("/img/home_keep_in_touch.png")} alt="" className="bg_section" style={!isMobile ? {right: "0px"} : {left: "0px"}}/>
 
 				<div className="content_container">
 					<div className="segment">
@@ -137,10 +143,10 @@ class Home extends Component {
 
 					<div className="segment" style={{flexDirection:"row", justifyContent:"normal"}}>
 						<Featured 
-							style={{textAlign:"right"}}
-							title={"Keep in touch"}
+							title={<div style={isMobile ? {width:"100%", textAlign: "left", } : {}}>{"Keep in touch"}</div>}
 							subtitle={"Book an appointment today"}
 							text={"Meet us soon so we can discuss your skin needs. See our schedules and clinic locations to book an appointment today."}
+							style={isMobile ? {marginTop: "400px", marginBottom:"20px"} :  {textAlign:"right"}}
 							button={{
 								text: "Send Us A Message",
 								onClick: ()=>{

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './style.scss';
 
-import Button from "Elements/Button/"
-import Banner from "Elements/Banner/"
+import Button from "Elements/Button/";
+import Banner from "Elements/Banner/";
+import isMobile from "Assets/scripts/isMobile";
 
 
 class Home extends Component {
@@ -68,7 +69,7 @@ class Home extends Component {
 
 	render() {
 		return (<div className="page_child_services">
-			<Banner images={this.banner_list} />
+			<Banner images={this.banner_list} style={isMobile ? {height:"290px"} : {}} />
 			
 			<div className="section">
 				<div className="content_container" >
@@ -96,7 +97,7 @@ class Home extends Component {
 				</div>
 			</div>
 
-			<div className="section" style={{backgroundImage: "url("+_.imgPath("/img/moh_indication_bg.png")+")", backgroundSize: "100% 100%", padding: "40px 0px"}}>
+			<div className="section" style={{backgroundImage: "url("+_.imgPath("/img/moh_indication_bg.png")+")", backgroundSize: isMobile ? "200% 100%" : "100% 100%", backgroundPosition:  isMobile ? "center" : "", padding: "40px 0px"}}>
 				<div className="content_container" >
 					<div className="indication">
 						<div className="title f_neuzeit">INDICATIONS FOR MOHS SURGERY</div>

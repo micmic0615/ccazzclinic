@@ -140,3 +140,91 @@
         }
     }
 }
+
+@media only screen and (max-width: 720px) {
+    .page_child_services {
+        .section {
+            .content_container {
+                .preface {
+                    .title {
+                     
+                    }
+    
+                    .subtitle {
+                        margin-bottom: 40px;
+                    }
+    
+                    .text {
+                        padding: 0px 20px;
+                    }
+    
+                    .image {
+                        padding: 20px 20px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+    
+                .indication {
+             
+    
+                    .title {
+                      
+                    }
+    
+                    .subtitle {
+                        padding: 0px 40px;
+                    }
+    
+                    .indication_rows {
+                        flex-direction: column;
+                        .service_column {
+                            width: 100%;
+                            .service_title {
+                            
+                            }
+            
+                            .service_list {
+                           
+    
+                                li {
+                                
+                                }
+                            }
+                        }
+                    }
+                }
+    
+                .others {
+                    padding: 0px 20px;
+    
+                    .title {
+                       
+                    }
+    
+                    .other_rows {
+                        flex-direction: column;
+            
+                        .service_column {
+                            width: 100%;
+            
+            
+                            .service_list {
+                               
+                            }
+                        }
+                    }
+    
+                    .single_column_list {
+                        
+                    }
+    
+                    .paragraph {
+                        
+                    }
+                }
+            }
+        }
+    }
+}

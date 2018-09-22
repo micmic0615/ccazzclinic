@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './style.scss';
 
-import Button from "Elements/Button/"
-import Banner from "Elements/Banner/"
+import Button from "Elements/Button/";
+import Banner from "Elements/Banner/";
+import isMobile from "Assets/scripts/isMobile";
 
 
 class TheDoctors extends Component {
@@ -38,12 +39,14 @@ class TheDoctors extends Component {
 
 	render() {
 		return (<div className="page_the_doctos">
-			<Banner images={this.banner_list} />
+			<Banner 
+				images={this.banner_list} 
+				style={isMobile ? {height:"290px"} : {}}
+				featuredStyle={isMobile ? {position: "absolute", bottom:"-20px"} : {}}
+			/>
 			
 			<div className="section">
 				<div className="content_container">
-					
-
 					<div className="segment">
 						<div className="title f_neuzeitheavy">
 							The Skin Expert Powerhouse

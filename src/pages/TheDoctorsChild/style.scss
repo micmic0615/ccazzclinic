@@ -86,6 +86,7 @@
                 }
             }
 
+            
 
             .logos_container {
                 width: 100%;
@@ -93,7 +94,11 @@
 
                 .logo_batch {
                     width: 100%;
+                    display: flex;
                     flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
 
                     .logo_title {
                         width: 100%;
@@ -103,28 +108,155 @@
                         font-size: 18px;
                     }
 
+                    .logo_arrows {
+                        width: 100%;
+                        position: absolute;
+                        top: 0px;
+        
+                        .logo_arrow {
+                            position: absolute;
+                            top: 110px;
+                            opacity: 0.5;
+                        }
+
+                        .logo_arrow.left {
+                            left: 20px;
+                        }
+
+                        .logo_arrow.right {
+                            right: 20px;
+                            transform: scale(-1, 1)
+                        }
+
+                        .logo_arrow:hover {
+                            opacity: 1;
+                        }
+                    }
+
                     .logo_list{
                         width: 100%;
                         display: flex;
-                        justify-content: center;
                         margin-bottom: 60px;
+                        overflow: hidden;
+                        position: relative;
 
-                        .logo_item {
-                            width: 140px;
+                        .logo_canvas {
                             display: flex;
-                            justify-content: center;
-                            flex-direction: column;
+                            position: relative;
+                            transition: 0.35s left;
 
-                            img {
-                                width: 120px;
-                                height: 120px;
-                                margin: 0px 10px;
+                            .logo_item {
+                                width: 140px;
+                                display: flex;
+                                justify-content: center;
+                                flex-direction: column;
+    
+                                img {
+                                    width: 120px;
+                                    height: 120px;
+                                    margin: 0px 10px;
+                                }
+    
+                                p {
+                                    padding: 0px 20px;
+                                    font-size: 12px;
+                                    text-align: center
+                                }
                             }
+                        }
 
-                            p {
-                                padding: 0px 20px;
-                                font-size: 12px;
-                                text-align: center
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 720px) {
+    .page_the_doctos_child {
+    
+        .section {
+            
+    
+            .content_container {
+                flex-direction: column-reverse;
+    
+                .bio_text {
+                    width: 100%;
+                }
+    
+                .bio_image {
+                    
+    
+                    img {
+                        top: 0px;
+                    }
+                }
+    
+    
+                .position_tabs {
+                    margin-top: 40px;
+                    width: 100%;
+                    padding: 0px 20px;
+                    .position_header_container {
+                        width: 100%;
+    
+                        .position_header {
+                            
+                        }
+    
+                        .position_header.active {
+                            
+                        }
+                    }
+    
+                    .position_text {
+                        
+                    }
+                }
+    
+                
+                .position_icon_list {
+                    padding-left: 20px;
+                    padding-right: 20px;
+    
+                    .position_column {
+                        img {
+                            
+                        }
+    
+                        p {
+                            
+                        }
+                    }
+                }
+    
+    
+                .logos_container {
+                    
+    
+                    .logo_batch {
+                        
+    
+                        .logo_title {
+                            
+                        }
+    
+                        .logo_list{
+                            
+    
+                            .logo_item {
+                                
+    
+                                img {
+                                
+                                }
+    
+                                p {
+                                    
+                                }
                             }
                         }
                     }

@@ -4,7 +4,7 @@ import './style.scss';
 import Button from "Elements/Button/"
 import Featured from "Elements/Featured/"
 import Banner from "Elements/Banner/"
-
+import isMobile from "Assets/scripts/isMobile";
 
 class Home extends Component {
 	constructor(props){
@@ -14,7 +14,7 @@ class Home extends Component {
 			{
 				image: "/img/our_services_banner_1.jpg",
 				title: "Our Services",
-				text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus optio, iusto doloremque, provident unde voluptatum dignissimos reprehenderit voluptate eaque reiciendis distinctio ab perspiciatis magni a modi fugiat labore neque aliquam.",
+				text: "We aim to provide the best but affordable service, giving each patient special and personalized attention, and adhering to the principle of privileged communication.",
 			},
 		];
 
@@ -55,10 +55,14 @@ class Home extends Component {
 
 	render() {
 		return (<div className="page_services">
-			<Banner images={this.banner_list} />
+			<Banner 
+				images={this.banner_list} 
+				style={isMobile ? {height:"290px"} : {}}
+				featuredStyle={isMobile ? {position: "absolute", bottom:"-20px"} : {}}
+			/>
 			
 			<div className="section">
-				<div className="content_container" style={{flexDirection: "row"}}>
+				<div className="content_container" style={isMobile ? {} : {flexDirection: "row"}}>
 					<div className="service_column">
 						<div className="service_title f_neuzeitheavy">
 							<b>General Services</b>
@@ -93,7 +97,7 @@ class Home extends Component {
 
 					<div className="segment" style={{flexDirection:"row-reverse", justifyContent:"normal"}}>
 						<Featured 
-							style={{marginTop:"0px"}}
+							style={isMobile ? {marginTop:"260px", marginBottom: "20px"} : {marginTop:"0px"}}
 							title={"MOHS Micrographic Surgery (MMS)"}
 							subtitle={"The best treatment for skin cancer"}
 							text={"The modern MOHS surgeon performs the roles ordinarily performed by several different specialists in treating a patient with skin cancer. However, in dealing with unusually complicated tumors, the mohs surgeon may work in conjunction with another specialist, such as an otolaryngologist, oculoplastic surgeon, or plastic surgeon."}

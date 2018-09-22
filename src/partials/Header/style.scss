@@ -189,6 +189,7 @@
 @media only screen and (max-width: 720px) {
     .header {
         .curve {
+            overflow: hidden;
             > .bg_img {
                 min-width: 1080px;
                 left: 50%;

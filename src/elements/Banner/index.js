@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './style.scss';
 
-import Featured from "Elements/Featured/"
+import Featured from "Elements/Featured/";
+import isMobile from "Assets/scripts/isMobile";
 
 
 class Banner extends Component {
@@ -35,7 +36,7 @@ class Banner extends Component {
 	}
 
     render() {
-        return (<div className="banner" >
+        return (<div className="banner" style={this.props.style || {}}>
             <div className="mask">
                 <div className="canvas" style={{width: (Math.max(100, this.props.images.length*100)) + "%", left: (this.state.banner_active*-100) + "%"}}>
                     {(()=>{
@@ -46,6 +47,7 @@ class Banner extends Component {
                                         title={banner_item.title}
                                         text={banner_item.text}
                                         button={banner_item.button}
+                                        style={this.props.featuredStyle || {}}
                                     />
                                 </div>
                             </div>
@@ -53,7 +55,7 @@ class Banner extends Component {
                     })()}
                 </div>
 
-                <div className="slide_btn_container" style={{display: this.props.images > 1 ? "flex" : "none"}}>
+                <div className="slide_btn_container" style={{display: this.props.images.length > 1 ? "flex" : "none"}}>
                     {(()=>{
                         return this.props.images.map((banner_item, index)=>{
                             return 	<div className={"slide_btn " + (index == this.state.banner_active ? "active" : "")} onClick={()=>{this.setState({banner_active: index})}}></div>
