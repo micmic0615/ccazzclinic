@@ -74,7 +74,7 @@ class PageFrame extends Component {
 
 	render() {
 		return (<div id="main_wrapper">
-			<Header {...this.props} />
+			{this.props.location.pathname.includes("admin") ? null : <Header {...this.props} />}
 			<div id="main_container">
 				<div className="debug_window" style={{right: this.props.state.debugWindow ? "10px" : "-300px"}}>
 					<ul>
@@ -90,7 +90,8 @@ class PageFrame extends Component {
 				{this.props.children}
 				<Modal />
 			</div>
-			<Footer {...this.props} />
+
+			{this.props.location.pathname.includes("admin") ? null : <Footer {...this.props} />}
 		</div>)
 	}
 }

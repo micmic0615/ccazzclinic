@@ -1,7 +1,7 @@
 import Navigation from 'Constants/navigation.js'
 
 
-let routeList = [];
+let routeList = [["Admin", "/admin"]];
 
 Navigation.forEach((nav)=>{
 	routeList.push([

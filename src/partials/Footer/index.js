@@ -9,7 +9,7 @@ class Footer extends Component {
 		super(props);
 	}
 	render() {
-		return (<div className="footer">
+		return (<div className="footer" >
 			<div className="footer_content">
 				<img src={_.imgPath("/img/footer_curve.png")} alt="" className="bg_img" />
 				<div className="content_container">
