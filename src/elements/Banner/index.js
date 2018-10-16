@@ -40,8 +40,8 @@ class Banner extends Component {
             <div className="mask">
                 <div className="canvas" style={{width: (Math.max(100, this.props.images.length*100)) + "%", left: (this.state.banner_active*-100) + "%"}}>
                     {(()=>{
-                        return this.props.images.map((banner_item)=>{
-                            return <div className="slide" style={{backgroundImage: "url("+_.imgPath(banner_item.image)+")"}}>
+                        return this.props.images.map((banner_item, index)=>{
+                            return <div key={index+ "ban"} className="slide" style={{backgroundImage: "url("+_.imgPath(banner_item.image)+")"}}>
                                 <div className="content_container">
                                     <Featured 
                                         title={banner_item.title}
@@ -58,7 +58,7 @@ class Banner extends Component {
                 <div className="slide_btn_container" style={{display: this.props.images.length > 1 ? "flex" : "none"}}>
                     {(()=>{
                         return this.props.images.map((banner_item, index)=>{
-                            return 	<div className={"slide_btn " + (index == this.state.banner_active ? "active" : "")} onClick={()=>{this.setState({banner_active: index})}}></div>
+                            return 	<div key={index + "banit"} className={"slide_btn " + (index == this.state.banner_active ? "active" : "")} onClick={()=>{this.setState({banner_active: index})}}></div>
                         });							
                     })()}
                 </div>

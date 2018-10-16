@@ -24,7 +24,13 @@ function Featured (props) {
             {props.text}
         </div>}
 
-        {_.isNil(props.button) ? null :  <Button className="sz_large cl_dark" onClick={props.button.onClick}>
+        {_.isNil(props.button) ? null :  <Button className="sz_large cl_dark" onClick={()=>{
+            if (props.button.link){
+                window.location.href = props.button.link
+            } else if (props.button.onClick){
+                props.button.onClick()
+            }
+        }}>
             {props.button.text}
         </Button>}
     </div>)

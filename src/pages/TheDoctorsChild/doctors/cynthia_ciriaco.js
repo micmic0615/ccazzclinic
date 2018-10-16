@@ -43,28 +43,22 @@ function Doctor () {
     ]
 
     this.icon_positions	= [
-        ["/img/icons/ztan_1.png",
-        "B.S. Biology, Magna Cum Laude",
+        ["B.S. Biology, Magna Cum Laude",
         "University of the Philippines, Diliman"],
 
-        ["/img/icons/ztan_2.png",
-        "Doctor of Medicine (Top Ten Percentile)",
+        ["Doctor of Medicine (Top Ten Percentile)",
         "University of the Philippines -Philippine General Hospital (UP-PGH)"],
 
-        ["/img/icons/ztan_3.png",
-        "SPECIALTY : Dermatology (Chief Resident, Senior Year) ",
+        ["SPECIALTY : Dermatology (Chief Resident, Senior Year) ",
         "University of the Philippines - Philippine General Hospital (UP-PGH)"],
 
-        ["/img/icons/ztan_4.png",
-        "SUB-SPECIALTY : Mohs Micrographic Surgery and Dermatologic Surgery",
+        ["SUB-SPECIALTY : Mohs Micrographic Surgery and Dermatologic Surgery",
         "Harvard Medical School - Massachusetts Eye and Ear Infirmary"],
 
-        ["/img/icons/ztan_5.png",
-        "BOARD-CERTIFIED IN DERMATOLOGY",
+        ["BOARD-CERTIFIED IN DERMATOLOGY",
         "(Top 1 in the Diplomate Examination, Philippine Board of Dermatology)"],
 
-        ["/img/icons/ztan_6.png",
-        "FELLOW :  Philippine Dermatological Society ",]
+        ["FELLOW :  Philippine Dermatological Society ",]
     ]
 
     this.logos = [

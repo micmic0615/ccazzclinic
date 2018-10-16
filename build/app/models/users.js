@@ -3,15 +3,7 @@
 	const schema = mongoose.Schema;
 
 	const UserSchema = new schema({
-		first_name: { 
-			type: String,
-			required: true
-		},
-
-		last_name: { 
-			type: String,
-			required: true
-		},
+		
 
 		username: { 
 			type: String,

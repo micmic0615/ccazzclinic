@@ -4,43 +4,34 @@ import './style.scss';
 import Button from "Elements/Button/";
 import Banner from "Elements/Banner/";
 import isMobile from "Assets/scripts/isMobile";
-
+import { read } from "Services/crud"
 
 class TheDoctors extends Component {
 	constructor(props){
 		super(props);
 
-		this.banner_list = [
-			{
-				image: "/img/the_doctors_banner_1.jpg",
-				title: "The Doctors",
-				text: "We at CCAZZ strive to give the best of our abilities, skills, talents, and time in providing our services to our patients in order to achieve near perfection. We aim to achieve an enhanced but natural look for our patients, without sacrificing his distinct personality and unique features. ",
-			},
-		];
+		this.state = {
+			banner_list: [],
+			the_doctors: []
+		}
+	}
 
-		this.treatment_list = [
-			{
-				image: "/img/doctor_1.png",
-				title: `Dr. Cynthia P. Ciriaco-Tan \n M.D., F.P.D.S.`,
-				subtitle: "Dermatology and Mohs Micrographic (Skin Cancer) and Dermatologic Surgery",
-				text: "Dr. Cynthia P. Ciriaco-Tan is currently the Head of the Department of Dermatology of St. Luke’s Medical Center in Quezon City, and the Head of the Mohs Unit of the Dermatology Center of St. Luke’s Medical Center in Quezon City and Global City.",
-				link: "/doc"
-			},
-			{
-				image: "/img/doctor_2.png",
-				title: `Dr. Zuriel K. Tan \n M.D., F.P.S.C.S.`,
-				subtitle: "Plastic, Cosmetic, and General Surgery",
-				text: "Dr. Zuriel K. Tan is a cosmetic surgeon with more than 30 years of experience in the field. He is currently a consultant at Mary Johnston Hospital.",
-				link: "/doc"
-			},
-			
-		]
+	componentDidMount = ()=>{
+		read({db: "pages", filter:{page_id: "the_doctors"}}).then((result)=>{
+			if (!_.isEmptyArray(result)){
+				this.setState({
+					banner_list: result[0].content.banner_list,
+					the_doctors: result[0].content.the_doctors,
+					loaded: true
+				})
+			}
+		})
 	}
 
 	render() {
 		return (<div className="page_the_doctos">
 			<Banner 
-				images={this.banner_list} 
+				images={this.state.banner_list} 
 				style={isMobile ? {height:"290px"} : {}}
 				featuredStyle={isMobile ? {position: "absolute", bottom:"-20px"} : {}}
 			/>
@@ -55,7 +46,7 @@ class TheDoctors extends Component {
 
 					<div className="segment column">
 						{(()=>{
-							return this.treatment_list.map((treatment_item)=>{
+							return this.state.the_doctors.map((treatment_item)=>{
 								return <div className="treatment">
 									<div className="vector">
 										<img src={_.imgPath(treatment_item.image)} alt=""  />
@@ -73,7 +64,9 @@ class TheDoctors extends Component {
 										{treatment_item.text}
 									</div>
 
-									<Button className="sz_large cl_dark">View Profile</Button>
+									<Button className="sz_large cl_dark" onClick={()=>{
+										window.location.href = treatment_item.link
+									}}>View Profile</Button>
 								</div>
 							})
 						})()}

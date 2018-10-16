@@ -34,29 +34,22 @@ function Doctor () {
     ]
 
     this.icon_positions	= [
-        ["/img/icons/ztan_1.png",
-        "B.S. Pre-Medicine",
+        ["B.S. Pre-Medicine",
         "University of the Philippines, Diliman"],
 
-        ["/img/icons/ztan_2.png",
-        "Doctor of Medicine ",
-        "University of the East Ramon Magsaysay",
-        "Memorial Medical Center (UERMMMC)"],
+        ["Doctor of Medicine ",
+        "University of the East Ramon Magsaysay \n Memorial Medical Center (UERMMMC)"],
 
-        ["/img/icons/ztan_3.png",
-        "SPECIALTY : General Surgery",
+        ["SPECIALTY : General Surgery",
         "Mary Johnston Hospital"],
 
-        ["/img/icons/ztan_4.png",
-        "SUB-SPECIALTY : Plastic Cosmetic Surgery",
+        ["SUB-SPECIALTY : Plastic Cosmetic Surgery",
         "The Philippine Society for Cosmetic Surgery"],
 
-        ["/img/icons/ztan_5.png",
-        "BOARD-CERTIFIED IN COSMETIC SURGERY",
+        ["BOARD-CERTIFIED IN COSMETIC SURGERY",
         "(Philippine Board of Cosmetic Surgery)"],
 
-        ["/img/icons/ztan_6.png",
-        "FELLOW : Philippine Society for Cosmetic Surgery"]
+        ["FELLOW : Philippine Society for Cosmetic Surgery"]
     ]
 
     this.logos = [

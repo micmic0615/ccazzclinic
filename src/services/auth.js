@@ -5,8 +5,8 @@ export function register(params){
     return query("auth/register", params)
 }
 
-export function login(params){
-    query("auth/login", params).then((response)=>{
+export function login(username, password){
+    query("auth/login", {username, password}).then((response)=>{
         saveToken(response.token)
     }).catch((error)=>{
         console.log(error)

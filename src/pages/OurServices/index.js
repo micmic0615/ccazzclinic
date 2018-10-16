@@ -6,57 +6,39 @@ import Featured from "Elements/Featured/"
 import Banner from "Elements/Banner/"
 import isMobile from "Assets/scripts/isMobile";
 
+import { read } from "Services/crud"
+
 class Home extends Component {
 	constructor(props){
 		super(props);
 
-		this.banner_list = [
-			{
-				image: "/img/our_services_banner_1.jpg",
-				title: "Our Services",
-				text: "We aim to provide the best but affordable service, giving each patient special and personalized attention, and adhering to the principle of privileged communication.",
-			},
-		];
+		this.state = {
+			banner_list: [],
+			general_services: [],
+			cosmetic_surgery: [],
+			featured_one: {},
+			loaded: false
+		}
+	}
 
-		this.general_services = [
-			"Mohs Micrographic Surgery (Skin Cancer Surgery)",
-			"Sclerotherapy (Leg Vein Removal)",
-			"Botulinum Toxin (Botox) and Filler Injection",
-			"Laser Treatment for melasma, birthmarks, tattoo, & hair removal",
-			"Radiofrequency",
-			"Acne Treatment",
-			"Scars / Keloid Treatment",
-			"Skin & Nail Biopsy",
-			"Removal of warts, syringoma, etc.",
-			"Chemical Peeling",
-			"Bleaching",
-			"Contact Dermatitis Treatment",
-			"Diagnosis & Treatment of all Dermatologic Diseases(skin, hair, & nails)"
-		]
-
-		this.cosmetic_surgery = [
-			"Noselift / Nose Reduction",
-			"Deep-set / Slit Eyes / Eyebag Removal",
-			"Facelift / Temple Lift / Neck Tuck",
-			"Liposuction / Lipectomy (Tummy Tuck) / Lipotransplant",
-			"Breast Augmentation / Breast Reduction",
-			"Cleft Chin & Augmentation",
-			"Cleft Lip & Palate Repair",
-			"Lip Reduction & Augmentation",
-			"Ear Repair / Ear Tuck",
-			"Dermabrasion",
-			"Scar Revision",
-			"Mole Removal",
-			"Hair Transplant / Scalp Reduction",
-			"Artificial Dimple",
-			"Lipocurettage for Axillary Hyperhidrosis"
-		]
+	componentDidMount = ()=>{
+		read({db: "pages", filter:{page_id: "our_services"}}).then((result)=>{
+			if (!_.isEmptyArray(result)){
+				this.setState({
+					banner_list: result[0].content.banner_list,
+					general_services: result[0].content.general_services,
+					cosmetic_surgery: result[0].content.cosmetic_surgery,
+					featured_one: result[0].content.featured_one,
+					loaded: true
+				})
+			}
+		})
 	}
 
 	render() {
 		return (<div className="page_services">
 			<Banner 
-				images={this.banner_list} 
+				images={this.state.banner_list} 
 				style={isMobile ? {height:"290px"} : {}}
 				featuredStyle={isMobile ? {position: "absolute", bottom:"-20px"} : {}}
 			/>
@@ -69,7 +51,7 @@ class Home extends Component {
 						</div>
 
 						<div className="service_list f_opensans">
-							{this.general_services.map((item)=>{return <p>{item}</p>})}
+							{this.state.general_services.map((item)=>{return <p>{item}</p>})}
 						</div>
 					</div>
 
@@ -79,7 +61,7 @@ class Home extends Component {
 						</div>
 
 						<div className="service_list f_opensans">
-							{this.cosmetic_surgery.map((item)=>{return <p>{item}</p>})}
+							{this.state.cosmetic_surgery.map((item)=>{return <p>{item}</p>})}
 						</div>
 					</div>
 				</div>
@@ -98,15 +80,10 @@ class Home extends Component {
 					<div className="segment" style={{flexDirection:"row-reverse", justifyContent:"normal"}}>
 						<Featured 
 							style={isMobile ? {marginTop:"260px", marginBottom: "20px"} : {marginTop:"0px"}}
-							title={"MOHS Micrographic Surgery (MMS)"}
-							subtitle={"The best treatment for skin cancer"}
-							text={"The modern MOHS surgeon performs the roles ordinarily performed by several different specialists in treating a patient with skin cancer. However, in dealing with unusually complicated tumors, the mohs surgeon may work in conjunction with another specialist, such as an otolaryngologist, oculoplastic surgeon, or plastic surgeon."}
-							button={{
-								text: "Learn More",
-								onClick: ()=>{
-									
-								}
-							}}
+							title={this.state.featured_one.title}
+							subtitle={this.state.featured_one.subtitle}
+							text={this.state.featured_one.text}
+							button={this.state.featured_one.button}
 						/>
 					</div>
 				</div>

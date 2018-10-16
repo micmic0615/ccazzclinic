@@ -6,64 +6,39 @@ import Featured from "Elements/Featured/";
 import Banner from "Elements/Banner/";
 import isMobile from "Assets/scripts/isMobile";
 
+import { read } from "Services/crud"
 
 class Home extends Component {
 	constructor(props){
 		super(props);
 
-		this.banner_list = [
-			{
-				image: "/img/banner_1.jpg",
-				title: "The doctors for your skin needs.",
-				text: "CCAZZ CLINIC is your professional dermatologic, mohs micrographic, and cosmetic surgery center in the Philippines.",
-				button: {
-					text: "MEET THE DOCTORS",
-					onClick: ()=>{}
-				}
-			},
-			{
-				image: "/img/banner_2.jpg",
-				title: "Keep in touch, book an appointment today. ",
-				text: "Meet us soon so we can discuss your skin needs. See our schedules and clinic locations to book an appointment today.",
-				button: {
-					text: "SEND US A MESSAGE",
-					onClick: ()=>{}
-				}
-			},
-			{
-				image: "/img/banner_3.jpg",
-				title: "Know about the best treatment for skin cancer.",
-				text: "Mohs Micrographic Surgery (MMS) offers the highest cure rate for most cases of skin cancer. It is the microscopically-controlled excision of skin cancer. ",
-				button: {
-					text: "LEARN MORE",
-					onClick: ()=>{}
-				}
-			},
-		];
+		this.state = {
+			banner_list: [],
+			treatment_list: [],
+			featured_one: {},
+			featured_two: {},
+			loaded: false
+		}
+	}
 
-		this.treatment_list = [
-			{
-				image: "/img/home_about_1.png",
-				title: "The Best but Affordable Service",
-				text: "We aim to provide world-class but affordable services to our patients, nothing less, giving the best of our abilities, skills, talents, and time."
-			},
-			{
-				image: "/img/home_about_2.png",
-				title: "Special and Personalized Attention",
-				text: "We  adhere to the principle that every patient is to be regarded as a unique individual in his own right and deserves no less than special and personalized treatment."
-			},
-			{
-				image: "/img/home_about_3.png",
-				title: "Privileged Communication",
-				text: "We value the sanctity of a contract between a patient and CCAZZ, and the principle of privileged communication. "
+	componentDidMount = ()=>{
+		read({db: "pages", filter:{page_id: "home"}}).then((result)=>{
+			if (!_.isEmptyArray(result)){
+				this.setState({
+					banner_list: result[0].content.banner_list,
+					treatment_list: result[0].content.treatment_list,
+					featured_one: result[0].content.featured_one,
+					featured_two: result[0].content.featured_two,
+					loaded: true
+				})
 			}
-		]
+		})
 	}
 
 	render() {
 		return (<div className="page_home">
 			<Banner 
-				images={this.banner_list} 
+				images={this.state.banner_list} 
 				featuredStyle={isMobile ? {position: "absolute", bottom:"60px"} : {}}
 			/>
 			
@@ -83,8 +58,8 @@ class Home extends Component {
 
 					<div className="segment column">
 						{(()=>{
-							return this.treatment_list.map((treatment_item)=>{
-								return <div className="treatment">
+							return this.state.treatment_list.map((treatment_item, index)=>{
+								return <div key={index+"treatr"} className="treatment">
 									<div className="vector">
 										<img src={_.imgPath(treatment_item.image)} alt="" className="bg_img" />
 									</div>
@@ -116,16 +91,11 @@ class Home extends Component {
 						
 					<div className="segment" style={{flexDirection:"row-reverse", justifyContent:"normal"}}>
 						<Featured 
-							title={<div style={isMobile ? {width:"100%", textAlign: "left", } : {}}>{"Leading in MOHS Micrographic Surgery (MMS)"}</div>}
-							subtitle={"The best treatment for skin cancer"}
-							text={"Mohs Micrographic Surgery (MMS) offers the highest cure rate for most cases of skin cancer. It is the microscopically-controlled excision of skin cancer."}
+							title={<div style={isMobile ? {width:"100%", textAlign: "left", } : {}}>{this.state.featured_one.title}</div>}
+							subtitle={this.state.featured_one.subtitle}
+							text={this.state.featured_one.text}
 							style={isMobile ? {marginTop: "460px", marginBottom:"20px"} : {}}
-							button={{
-								text: "Learn More",
-								onClick: ()=>{
-									
-								}
-							}}
+							button={this.state.featured_one.button}
 						/>
 					</div>
 				</div>
@@ -143,16 +113,11 @@ class Home extends Component {
 
 					<div className="segment" style={{flexDirection:"row", justifyContent:"normal"}}>
 						<Featured 
-							title={<div style={isMobile ? {width:"100%", textAlign: "left", } : {}}>{"Keep in touch"}</div>}
-							subtitle={"Book an appointment today"}
-							text={"Meet us soon so we can discuss your skin needs. See our schedules and clinic locations to book an appointment today."}
+							title={<div style={isMobile ? {width:"100%", textAlign: "left", } : {}}>{this.state.featured_two.title}</div>}
+							subtitle={this.state.featured_two.subtitle}
+							text={this.state.featured_two.text}
 							style={isMobile ? {marginTop: "400px", marginBottom:"20px"} :  {textAlign:"right"}}
-							button={{
-								text: "Send Us A Message",
-								onClick: ()=>{
-									
-								}
-							}}
+							button={this.state.featured_two.button}
 						/>
 					</div>
 				</div>

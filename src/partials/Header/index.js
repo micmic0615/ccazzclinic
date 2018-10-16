@@ -20,15 +20,15 @@ class Header extends Component {
 		return <div className="nav_1">
 			<div className="item_1"></div>
 			<div className="item_1"></div>
-			{Navigation.map((nav_item)=>{
-				return <div className="item_1 f_neuzeit">
+			{Navigation.map((nav_item, index)=>{
+				return <div key={index+ "nav"} className="item_1 f_neuzeit">
 					<Link className="index_1" to={nav_item.link}>{nav_item.name} {!_.isEmptyArray(nav_item.children) ? <FontAwesomeIcon icon={faChevronDown}/> : ""} </Link>
 
 					{(()=>{
 						if (!_.isEmptyArray(nav_item.children)){
 							return <div className="nav_2 grd_purple_75">
-								{nav_item.children.map((nav_child)=>{
-									return <div className="item_2">
+								{nav_item.children.map((nav_child, twodex)=>{
+									return <div key={index+"_"+twodex+"_"+"nav_child"} className="item_2">
 										<Link className="index_2" to={nav_item.link + nav_child.link}>{nav_child.name}</Link>
 									</div>
 								})}

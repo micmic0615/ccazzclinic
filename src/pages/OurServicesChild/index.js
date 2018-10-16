@@ -5,71 +5,43 @@ import Button from "Elements/Button/";
 import Banner from "Elements/Banner/";
 import isMobile from "Assets/scripts/isMobile";
 
+import { read } from "Services/crud"
+
 
 class Home extends Component {
 	constructor(props){
 		super(props);
 
-		this.banner_list = [
-			{
-				image: "/img/mohs_banner_1.jpg",
-			},
-		];
+		this.state = {
+			banner_list: [],
+			recurrent_tumors: [],
+			eyelid_tumors: [],
+			specific_tumors_1: [],
+			specific_tumors_2: [],
+			other_diseases: [],
+			loaded: false
+		}
+	}
 
-		this.recurrent_tumors = [
-			"Tumors with indistinct clinical margins",
-			"Tumors in locations noted for frequent recurrence (around the eyes, nose, ears, temple, and scalp)",
-			"Tumors in young women",
-			"Tumors for which conservation of tissue is important"
-		]
-
-		this.eyelid_tumors = [
-			"Tumors on fingers/toes",
-			"Tumors on penis",
-			"Tumors that may require complex surgical repairs or that are likely to have poor cosmetic result after traditional treatments (particularly on the nose and ear area)",
-		]
-
-		this.specific_tumors_1 = [
-			"Basal Cell Carcinoma",
-			"Atypical Fibroxanthoma",
-			"Squamous Cell Carcinoma",
-			"Keratoacanthoma",
-			"Dermatofibrosarcoma Protruberas",
-			"Granular Cell Tumor",
-			"Merkel Cell Carcinoma",
-			"Bowen’s Diseases",
-			"Verrucous Carcinoma",
-			"Erythroplasia of Queyrat",
-			"Malignant Fibroshistiocytoma",
-			"Microcystic Adnexal Carcinoma"
-		]
-
-		this.specific_tumors_2 = [
-			"Cylindromas",
-			"Adenocystic Carcinoma",
-			"Nevus Sebaceous",
-			"Extrammammary Paget’s Disease",
-			"Eccrine Poroma",
-			"Leiomyosarcoma",
-			"Sebaceous Carcinoma",
-			"Hemangiosarcoma",
-			"Lentigo Maligna",
-			"Amelanotic Melanoma",
-			"Melanoma"
-		]
-
-		this.other_diseases = [
-			"Basal Cell Nevus Syndrome",
-			"Xeroderma Pigmentosum",
-			"Bloom’s Syndrome",
-			"Previous trauma (burn/vaccination)",
-			"Gangrene",
-		]
+	componentDidMount = ()=>{
+		read({db: "pages", filter:{page_id: "mohs_surgery"}}).then((result)=>{
+			if (!_.isEmptyArray(result)){
+				this.setState({
+					banner_list: result[0].content.banner_list,
+					recurrent_tumors: result[0].content.recurrent_tumors,
+					eyelid_tumors: result[0].content.eyelid_tumors,
+					specific_tumors_1: result[0].content.specific_tumors_1,
+					specific_tumors_2: result[0].content.specific_tumors_2,
+					other_diseases: result[0].content.other_diseases,
+					loaded: true
+				})
+			}
+		})
 	}
 
 	render() {
 		return (<div className="page_child_services">
-			<Banner images={this.banner_list} style={isMobile ? {height:"290px"} : {}} />
+			<Banner images={this.state.banner_list} style={isMobile ? {height:"290px"} : {}} />
 			
 			<div className="section">
 				<div className="content_container" >
@@ -111,7 +83,7 @@ class Home extends Component {
 								</div>
 
 								<ul className="service_list f_opensans">
-									{this.recurrent_tumors.map((item)=>{return <li>{item}</li>})}
+									{this.state.recurrent_tumors.map((item)=>{return <li>{item}</li>})}
 								</ul>
 							</div>
 
@@ -121,7 +93,7 @@ class Home extends Component {
 								</div>
 
 								<ul className="service_list f_opensans">
-									{this.eyelid_tumors.map((item)=>{return <li>{item}</li>})}
+									{this.state.eyelid_tumors.map((item)=>{return <li>{item}</li>})}
 								</ul>
 							</div>
 						</div>
@@ -137,13 +109,13 @@ class Home extends Component {
 						<div className="other_rows">
 							<div className="service_column">
 								<div className="service_list f_opensans">
-									{this.specific_tumors_1.map((item)=>{return <p>{item}</p>})}
+									{this.state.specific_tumors_1.map((item)=>{return <p>{item}</p>})}
 								</div>
 							</div>
 
 							<div className="service_column">
 								<div className="service_list f_opensans">
-									{this.specific_tumors_2.map((item)=>{return <p>{item}</p>})}
+									{this.state.specific_tumors_2.map((item)=>{return <p>{item}</p>})}
 								</div>
 							</div>
 						</div>
@@ -157,14 +129,16 @@ class Home extends Component {
 						<div className="title f_neuzeitheavy">OTHER DISEASES AMENABLE TO MMS</div>
 
 						<div className="single_column_list">
-							{this.other_diseases.map((item)=>{return <p>{item}</p>})}
+							{this.state.other_diseases.map((item)=>{return <p>{item}</p>})}
 						</div>
 
 						<div className="paragraph">
 							<p>	The Mohs surgeon performs the roles ordinarily performed by several different specialists in treating a patient with skin cancer. However, in dealing with unusually complicated tumors, the Mohs surgeon may work in conjunction with another specialist, such as an otolaryngologist, oculoplastic surgeon, or plastic surgeon.</p>
 						</div>
 
-						<Button  className="sz_extralarge cl_pink">
+						<Button  className="sz_extralarge cl_pink" onClick={()=>{
+							window.location.href = "/contact-us"
+						}}>
 							Have a question for our doctors? <b style={{marginLeft:"10px"}}>SEND US A MESSAGE</b>
 						</Button>
 					</div>
