@@ -9,13 +9,12 @@ export function login(username, password){
     query("auth/login", {username, password}).then((response)=>{
         saveToken(response.token)
     }).catch((error)=>{
-        console.log(error)
         alert("Invalid user and/or password")
     })
 }
 
 export function logout(){
-    clearToken()
+    clearToken() 
 }
 
 export function validateToken(callback){

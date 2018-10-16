@@ -19,7 +19,6 @@ exports.register = function(req, res){
 
 
 exports.login = function(req, res){
-    console.log(req.body)
     DB["users"].findOne({username: req.body.username, password: req.body.password}, (err, user)=>{
         if (!_.isNil(user)){
             user.token = _.uuid();
@@ -33,11 +32,16 @@ exports.login = function(req, res){
 }
 
 exports.validateToken = function(req, res){
-    DB["users"].findOne({token: req.body.token}, (err, user)=>{
-        if (!_.isNil(user)){
-            res.json(user)
-        } else {
-            res.status(400).send(err)
-        }
-    })
+    if (!_.isNil(req.body.token)){
+        DB["users"].findOne({token: req.body.token}, (err, user)=>{
+            if (!_.isNil(user)){
+                res.json(user)
+            } else {
+                res.status(400).send(err)
+            }
+        })
+    } else {
+        res.status(400).send("")
+    }
+    
 }
