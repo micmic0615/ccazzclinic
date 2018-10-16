@@ -36,8 +36,8 @@ module.exports = {
 			// "Containers": path.resolve(__dirname, "../src/containers/"),
 			// "Modules": path.resolve(__dirname, "../src/modules/"),
 			
-			// "Services": path.resolve(__dirname, "../src/services/"),
-			// "Utilities": path.resolve(__dirname, "../src/utilities/"),
+			"Services": path.resolve(__dirname, "../src/services/"),
+			"Utilities": path.resolve(__dirname, "../src/utilities/"),
 		},
 		plugins: [
 			// Prevents users from importing files from outside of src/ (or node_modules/).

@@ -7,6 +7,7 @@ import './style.scss';
 // import isMobile from "Assets/scripts/isMobile";
 
 import Login from './login';
+import { validateToken, login } from "Services/auth.js"
 
 
 class Admin extends Component {
@@ -14,19 +15,29 @@ class Admin extends Component {
 		super(props);
 
 		this.state = {
-			logged_in: localStorage.getItem("CCAZZ_SESSION"),
+			logged_in: null,
 		}
 	}
 
-	successLogin = (user, password)=>{
-		console.log(user, password)
+	componentDidMount = ()=>{
+		validateToken((err, user)=>{
+			if (_.isNil(err)){
+				this.setState({logged_in: true})
+			} else {
+				this.setState({logged_in: false})
+			}
+		})
+	}
+
+	successLogin = (username, password)=>{
+		login(username, password)
 	}
 
 	render() {
 		return (<Fragment>
-			{this.state.logged_in != "true" ? <Login successLogin={this.successLogin} /> : <div className="page_admin">
+			{!_.isNil(this.state.logged_in) ? (this.state.logged_in != true ? <Login successLogin={this.successLogin} /> : <div className="page_admin">
 				
-			</div>}
+			</div>) : null}
 		</Fragment>)
 	}
 }
