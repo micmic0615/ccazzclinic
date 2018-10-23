@@ -66,6 +66,14 @@ function Constructor (state_shape) {
         this.setState(update_obj)
     }
 
+    this.handleChangeString = (e, state_key)=>{
+        let item_to_edit = e.target.value;
+        let update_obj = { changed: true}
+        update_obj[state_key] = item_to_edit
+       
+        this.setState(update_obj)
+    }
+
     this.handleChangeList = (e, state_key, index)=>{
         let item_to_edit = [...this.state[state_key]];
         item_to_edit[index] = e.target.value;

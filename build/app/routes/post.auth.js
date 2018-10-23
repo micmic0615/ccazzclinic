@@ -16,8 +16,6 @@ exports.register = function(req, res){
     })
 }
 
-
-
 exports.login = function(req, res){
     DB["users"].findOne({username: req.body.username, password: req.body.password}, (err, user)=>{
         if (!_.isNil(user)){

@@ -15,3 +15,7 @@ export function update(params){
 export function destroy(params){
     return query("crud/destroy", params)
 }
+
+export function email(params){
+    return query("crud/email", params)
+}

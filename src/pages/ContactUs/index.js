@@ -1,46 +1,63 @@
 import React, { Component } from 'react';
 import './style.scss';
 
-import Button from "Elements/Button/"
+import Button from "Elements/Button/";
+import isMobile from "Assets/scripts/isMobile";
 
+import { read, email } from "Services/crud"
 
 class Home extends Component {
 	constructor(props){
 		super(props);
 
 		this.state = {
-			banner_list: [
-				{
-					image: "/img/contact-us-banner.jpg",
-					title: "Contact Us",
-					text: "Book an appointment today. Meet us soon so we can discuss your skin needs..",
-				}
-			],
-			banner_active: 0
+			banner_list: [],
+			contact_mobile: "",
+			contact_email: "",
+			clinic_schedule: [],
+
+
+			form_name: "",
+			form_email: "",
+			form_contact: "",
+			form_message: "",
+			form_submitted: false,
+			form_submitting: false,
+			loaded: false
 		};
 
-		this.treatment_list = [
-			{
-				image: "/img/home_about_1.png",
-				title: "The Best but Affordable Service",
-				text: "We aim to provide world-class but affordable services to our patients, nothing less, giving the best of our abilities, skills, talents, and time."
-			},
-			{
-				image: "/img/home_about_2.png",
-				title: "Special and Personalized Attention",
-				text: "We  adhere to the principle that every patient is to be regarded as a unique individual in his own right and deserves no less than special and personalized treatment."
-			},
-			{
-				image: "/img/home_about_3.png",
-				title: "Privileged Communication",
-				text: "We value the sanctity of a contract between a patient and CCAZZ, and the principle of privileged communication. "
-			}
-		]
 	
 	}
 
 	componentDidMount = ()=>{
-		
+		read({db: "pages", filter:{page_id: "contact_us"}}).then((result)=>{
+			if (!_.isEmptyArray(result)){
+				this.setState({
+					banner_list: result[0].content.banner_list,
+					contact_mobile: result[0].content.contact_mobile,
+					contact_email: result[0].content.contact_email,
+					clinic_schedule: result[0].content.clinic_schedule,
+					loaded: true
+				})
+			}
+		})
+	}
+
+	submitEmail = ()=>{
+		if (!this.state.form_submitting){
+			this.setState({form_submitting: true}, ()=>{
+				email({
+					name: this.state.form_name,
+					email: this.state.form_email,
+					contact: this.state.form_contact,
+					message: this.state.form_message,
+				}).then((result)=>{
+					this.setState({form_submitted: true, form_submitting: false})
+				}).catch((err)=>{
+					this.setState({form_submitted: true, form_submitting: false})
+				})
+			})
+		}
 	}
 
 	render() {
@@ -65,72 +82,104 @@ class Home extends Component {
 			</div>
 			
 			<div className="section">
-				WORK IN PROGRESS
-			</div>
-
-			{/* <div className="section">
-				<img src={_.imgPath("/img/home_leading_in_mohs.png")} alt="" className="bg_section" style={{left: "0px"}}/>
-
 				<div className="content_container">
 					<div className="segment">
-						<Button className="sz_small cl_light">
-							Flagship Service
-						</Button>
-					</div>
-
-					<div className="segment" style={{flexDirection:"row-reverse", justifyContent:"normal"}}>
-						<div className="featured">
-							<div className="title f_neuzeitheavy">
-								Leading in MOHS Micrographic Surgery (MMS)
-							</div>
-
-							<div className="featured_subtitle f_neuzeit">
-								The best treatment for skin cancer
-							</div>
-
-							<div className="featured_text f_opensans">
-								Mohs Micrographic Surgery (MMS) offers the highest cure rate for most cases of skin cancer. It is the microscopically-controlled excision of skin cancer. 
-							</div>
-
-							<Button className="sz_large cl_dark">
-								Learn More
+						<div className="contact_box">
+							<div className="berring" style={{left: "20px"}}><img src={_.imgPath("/img/contact-us-pearl.png")} alt=""  /></div>
+							<div className="berring" style={{right: "20px"}}><img src={_.imgPath("/img/contact-us-pearl.png")} alt=""  /></div>
+							<Button className="sz_small cl_light">
+								Official Contact Info
 							</Button>
+
+							<div className="details f_neuzeitheavy" style={{marginTop:"20px"}}>
+								<img src={_.imgPath("/img/icons/ztan_mobile.png")} alt=""  />
+								<div>{this.state.contact_mobile}</div>
+							</div>
+
+							<div className="details f_neuzeitheavy" style={{marginTop:"0px"}}>
+								<img src={_.imgPath("/img/icons/ztan_email.png")} alt=""  />
+								<div>{this.state.contact_email}</div>
+							</div>
+						</div>
+						<div className="form_box">
+							<input type="text" placeholder="* Your Name" value={this.state.form_name} onChange={(e)=>{this.setState({form_name:e.target.value})}}/>
+
+							<input type="text" placeholder="* E-mail Address" value={this.state.form_email} onChange={(e)=>{this.setState({form_email:e.target.value})}}/>
+
+							<input type="text" placeholder="* Contact No." value={this.state.form_contact} onChange={(e)=>{this.setState({form_contact:e.target.value})}}/>
+
+							<textarea type="text" placeholder="* Message" value={this.state.form_message} onChange={(e)=>{this.setState({form_message:e.target.value})}}/>
+
+							<div className="required"><i>*required fields</i></div>
+
+							<Button className="sz_large cl_dark" onClick={this.submitEmail}>
+								SEND MESSAGE
+							</Button>
+
+							<div className="clip">
+								<img src={_.imgPath("/img/contact-us-clip.png")} alt=""  />
+							
+							</div>
+
+							<div className="form_success" style={{display: this.state.form_submitted ? "flex" : "none"}} onClick={()=>{
+								this.setState({
+									form_name: "",
+									form_email: "",
+									form_contact: "",
+									form_message: "",
+									form_submitted: false,
+								})
+							}}>
+								<div className="success_box">
+									<img src={_.imgPath("/img/check.png")} alt="" className="success_check" />
+									<div className="success_notif f_neuzeitheavy">Message <br/>Succesfully Sent</div>
+								</div>
+							</div>
+
+							<div className="form_success" style={{display: this.state.form_submitting ? "flex" : "none"}}>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<div className="section">
-				<img src={_.imgPath("/img/home_keep_in_touch.png")} alt="" className="bg_section" style={{right: "0px"}}/>
+				<img src={_.imgPath("/img/contact_side.png")} alt="" className="bg_section" style={!isMobile ? {left: "0px"} : {right: "0px"}}/>
 
 				<div className="content_container">
-					<div className="segment">
-						<Button className="sz_small cl_light">
-							Contact Us
-						</Button>
-					</div>
+					<div className="segment" style={{justifyContent: "flex-end"}}>
+						<div className="clinic_schedule">
+							<div className="title f_neuzeitheavy">Clinic Schedule</div>
 
-					<div className="segment" style={{flexDirection:"row", justifyContent:"normal"}}>
-						<div className="featured" style={{textAlign:"right"}}>
-							<div className="title f_neuzeitheavy">
-								Keep in touch
-							</div>
+							{this.state.clinic_schedule.map((item, index)=>{
+								return <div className="schedule f_neuzeitheavy" key={index + "clinic_schedule"}>
+									<div className="clinic_name">{item[0]}</div>
 
-							<div className="featured_subtitle f_neuzeit">
-								Book an appointment today
-							</div>
+									<div className="clinic_details">
+										<img src={_.imgPath("/img/icons/ztan_location.png")} alt=""  />
+										<div>{item[1]}</div>
+									</div>
 
-							<div className="featured_text f_opensans">
-								Meet us soon so we can discuss your skin needs. See our schedules and clinic locations to book an appointment today.
-							</div>
+									<div className="clinic_details">
+										<img src={_.imgPath("/img/icons/ztan_door.png")} alt=""  />
+										<div>{item[2]}</div>
+									</div>
 
-							<Button className="sz_large cl_dark" style={{float: "right"}}>
-								Send Us A Message
-							</Button>
+									<div className="clinic_details" style={{marginTop:"5px"}}>
+										<img src={_.imgPath("/img/icons/ztan_landline.png")} alt=""  style={{position: "relative", top:" -8px"}} />
+										<div style={{alignItems:"flex-start"}}><span>Tel:</span> <pre style={{margin: "0px", marginLeft:"5px"}}>{item[3].split(",").join("\n")}</pre></div>
+									</div>
+
+									<div className="clinic_details">
+										<img src={_.imgPath("/img/icons/ztan_calendar.png")} alt=""  />
+										<div>{item[4]}</div>
+									</div>
+								</div>
+							})}
 						</div>
 					</div>
 				</div>
-			</div> */}
+			</div>
 		</div>)
 	}
 }

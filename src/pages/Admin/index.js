@@ -14,6 +14,7 @@ import ContentOurMohs from "./pages/mohs_surgery"
 import ContentTheDoctors from "./pages/the_doctors"
 import ContentDocCynthia from "./pages/doc_cynthia"
 import ContentDocZuriel from "./pages/doc_zuriel"
+import ContentContact from "./pages/contact_us"
 
 
 class Admin extends Component {
@@ -27,7 +28,7 @@ class Admin extends Component {
 			{name: "the_doctors", component: ContentTheDoctors},
 			{name: "dr_cynthia_tan", component: ContentDocCynthia},
 			{name: "dr_zuriel_tan", component: ContentDocZuriel},
-			{name: "contact_us", component: ContentHome},
+			{name: "contact_us", component: ContentContact},
 		]
 
 		this.state = {

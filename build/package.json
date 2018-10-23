@@ -29,6 +29,7 @@
     "mongoose": "^4.10.8",
     "node-cron": "^1.2.1",
     "node-slack-upload": "^1.2.1",
+    "nodemailer": "^4.6.8",
     "passport": "^0.4.0",
     "qr-image": "^3.2.0",
     "slack": "^11.0.0",

@@ -67,3 +67,32 @@ exports.destroy = function(req, res){
         }
     });
 }
+
+exports.email = function(req, res){
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'micmic0615@gmail.com',
+            pass: 'kupalputa909'
+        }
+    });
+
+    var mailOptions = {
+        from: req.body.email,
+        to: 'micmic0615@gmail.com',
+        subject: 'ccazz Contact-Us',
+        text: `Name: ` + req.body.name + ` \nContact No: ` + req.body.contact + `\nMessage: ` + req.body.message
+    }
+
+    transporter.sendMail(mailOptions, function(err, info){
+        if (err) {
+          console.log(err);
+          res.status(400).send(err)
+        } else {
+          console.log('Email sent: ' + info.response);
+          res.json("success")
+        }
+    });
+}
