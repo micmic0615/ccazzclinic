@@ -9,7 +9,7 @@ export default [
         children: [
             {
                 folder: "OurServicesChild",
-                name: "MOHS Surgery",
+                name: "Mohs Surgery",
                 link: "/mohs-surgery"
             },
            
