@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './style.scss';
 
 import Button from "Elements/Button/";
@@ -23,6 +23,9 @@ class Home extends Component {
 			form_message: "",
 			form_submitted: false,
 			form_submitting: false,
+			form_submit_message: "",
+
+			form_success: false,
 			loaded: false
 		};
 
@@ -44,19 +47,48 @@ class Home extends Component {
 	}
 
 	submitEmail = ()=>{
-		if (!this.state.form_submitting){
-			this.setState({form_submitting: true}, ()=>{
-				email({
-					name: this.state.form_name,
-					email: this.state.form_email,
-					contact: this.state.form_contact,
-					message: this.state.form_message,
-				}).then((result)=>{
-					this.setState({form_submitted: true, form_submitting: false})
-				}).catch((err)=>{
-					this.setState({form_submitted: true, form_submitting: false})
+
+		if (
+			!this.state.form_submitting &&
+			!_.isEmptyString(this.state.form_name) &&
+			!_.isEmptyString(this.state.form_email) &&
+			!_.isEmptyString(this.state.form_contact) &&
+			!_.isEmptyString(this.state.form_message) 
+		){
+			let is_number = new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/).test(this.state.form_contact);
+			let is_email = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(this.state.form_email);
+
+			let errors = [];
+
+			if (!is_number){errors.push("Contact number is invalid.")};
+			if (!is_email){errors.push("Email address is invalid.")};
+			
+			
+
+			if (_.isEmptyArray(errors)){
+				this.setState({form_submitting: true}, ()=>{
+					email({
+						name: this.state.form_name,
+						email: this.state.form_email,
+						contact: this.state.form_contact,
+						message: this.state.form_message,
+					}).then((result)=>{
+						this.setState({form_submitted: true, form_submitting: false, form_success: true, form_submit_message: <Fragment> Message <br/>Succesfully Sent </Fragment>})
+					}).catch((err)=>{
+						this.setState({form_submitted: true, form_submitting: false})
+					})
 				})
-			})
+			} else {
+				this.setState({
+					form_submitted: true,
+					form_submitting: false,
+					form_submit_message: <Fragment>
+						{errors.map((err, index)=>{
+							return <div key={index + "err"}>{err}</div>
+						})}
+					</Fragment>
+				})
+			}
 		}
 	}
 
@@ -122,17 +154,23 @@ class Home extends Component {
 							</div>
 
 							<div className="form_success" style={{display: this.state.form_submitted ? "flex" : "none"}} onClick={()=>{
-								this.setState({
-									form_name: "",
-									form_email: "",
-									form_contact: "",
-									form_message: "",
-									form_submitted: false,
-								})
+								if (this.state.form_success){
+									this.setState({
+										form_name: "",
+										form_email: "",
+										form_contact: "",
+										form_message: "",
+										form_submitted: false,
+									})
+								} else {
+									this.setState({
+										form_submitted: false,
+									})
+								}
 							}}>
 								<div className="success_box">
-									<img src={_.imgPath("/img/check.png")} alt="" className="success_check" />
-									<div className="success_notif f_neuzeitheavy">Message <br/>Succesfully Sent</div>
+									<img src={_.imgPath("/img/check.png")} alt="" className="success_check" style={{display: this.state.form_success ? "inline": "none"}}/>
+									<div className="success_notif f_neuzeitheavy">{this.state.form_submit_message}</div>
 								</div>
 							</div>
 

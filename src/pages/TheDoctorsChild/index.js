@@ -178,7 +178,7 @@ class TheDoctors extends Component {
 									</div>
 								</div>
 
-								<div className="logo_arrows" style={{display: logo_list.list.length < this.logos_max  ? "none" : "block"}}>
+								<div className="logo_arrows" style={{display: logo_list.list.length <= this.logos_max  ? "none" : "block"}}>
 									<div className="logo_arrow left" onClick={()=>{logoSwitch(140)}}>
 										<img src={_.imgPath("/img/icons/arrow.png")} alt=""/>
 									</div>

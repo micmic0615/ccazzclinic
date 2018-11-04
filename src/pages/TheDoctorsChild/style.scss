@@ -14,11 +14,12 @@
             z-index: 1;
 
             .bio_text {
-                width: 480px;
+                width: 540px;
             }
 
             .bio_image {
-                width: 100%;
+                flex: 1;
+                min-width: 340px;
                 text-align: center;
 
                 img {
@@ -185,6 +186,11 @@
     
                 .bio_text {
                     width: 100%;
+
+                    .featured {
+                        width: 100%;
+                        max-width: 9999px;
+                    }
                 }
     
                 .bio_image {
