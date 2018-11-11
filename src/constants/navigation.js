@@ -8,6 +8,11 @@ export default [
         link: "/our-services",
         children: [
             {
+                folder: "OurServices",
+                name: "All Services",
+                link: "/all-services",
+            },
+            {
                 folder: "OurServicesChild",
                 name: "Mohs Surgery",
                 link: "/mohs-surgery"

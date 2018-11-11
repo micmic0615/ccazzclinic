@@ -55,7 +55,7 @@ class Home extends Component {
 			!_.isEmptyString(this.state.form_contact) &&
 			!_.isEmptyString(this.state.form_message) 
 		){
-			let is_number = new RegExp(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/).test(this.state.form_contact);
+			let is_number = _.isFinite(parseInt(this.state.form_contact));
 			let is_email = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(this.state.form_email);
 
 			let errors = [];
@@ -75,7 +75,7 @@ class Home extends Component {
 					}).then((result)=>{
 						this.setState({form_submitted: true, form_submitting: false, form_success: true, form_submit_message: <Fragment> Message <br/>Succesfully Sent </Fragment>})
 					}).catch((err)=>{
-						this.setState({form_submitted: true, form_submitting: false})
+						this.setState({form_submitted: true, form_submitting: false, form_submit_message: <Fragment>Something went wrong <br/> {"Code: " + err.code + ", "+ err.responseCode}</Fragment>})
 					})
 				})
 			} else {
