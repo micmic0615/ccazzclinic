@@ -69,7 +69,7 @@ class ContentHome extends Component {
                     </tbody>
                 </table>
 
-                <div className="section_title">FORM RECEPIENT </div>
+                <div className="section_title">FORM RECIPIENT </div>
                 <table className="banner_table">
                     <tbody>
                         <tr >

@@ -125,7 +125,13 @@ function Constructor (state_shape) {
                 }
 
                 Object.keys(state_shape).forEach((state_key)=>{
-                    state_update[state_key] = result[0].content[state_key]
+                    state_update[state_key] = state_shape[state_key]
+                })
+
+                Object.keys(state_shape).forEach((state_key)=>{
+                    if (!_.isNil(result[0].content[state_key])){
+                        state_update[state_key] = result[0].content[state_key]
+                    }
                 })
 
 				this.setState(state_update)
