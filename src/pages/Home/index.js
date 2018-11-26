@@ -80,7 +80,7 @@ class Home extends Component {
 			</div>
 
 			<div className="section">
-				<img src={(!_.isNil(this.state.background_list) && !_.isNil(this.state.background_list[0]) ) ? this.state.background_list[0].image : _.imgPath("/img/home_leading_in_mohs.png") } alt="" className="bg_section" style={!isMobile ? {left: "0px"} : {right: "0px"}}/>
+				<img src={this.state.loaded == true ? ((!_.isNil(this.state.background_list) && !_.isNil(this.state.background_list[0]) ) ? this.state.background_list[0].image : _.imgPath("/img/home_leading_in_mohs.png")) : "" } alt="" className="bg_section" style={!isMobile ? {left: "0px"} : {right: "0px"}}/>
 
 				<div className="content_container">
 					<div className="segment">
@@ -103,7 +103,7 @@ class Home extends Component {
 			</div>
 
 			<div className="section">				
-				<img src={(!_.isNil(this.state.background_list) && !_.isNil(this.state.background_list[1]) ) ? this.state.background_list[1].image : _.imgPath("/img/home_keep_in_touch.png") } alt="" className="bg_section" style={!isMobile ? {right: "0px"} : {left: "0px"}}/>
+				<img src={this.state.loaded == true ? ((!_.isNil(this.state.background_list) && !_.isNil(this.state.background_list[1]) ) ? this.state.background_list[1].image : _.imgPath("/img/home_keep_in_touch.png")) : ""} alt="" className="bg_section" style={!isMobile ? {right: "0px"} : {left: "0px"}}/>
 
 				<div className="content_container">
 					<div className="segment">
