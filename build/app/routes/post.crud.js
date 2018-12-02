@@ -82,8 +82,8 @@ exports.email = function(req, res){
             });
         
             var mailOptions = {
-                from: result.content.form_sender_email,
-                to: req.body.email,
+                from: req.body.email,
+                to: result.content.form_sender_email,
                 subject: result.content.form_sender_subject,
                 text: `Name: ` + req.body.name + ` \nContact No: ` + req.body.contact + `\nMessage: ` + req.body.message
             }
