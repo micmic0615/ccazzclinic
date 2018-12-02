@@ -85,7 +85,7 @@ exports.email = function(req, res){
                 from: req.body.email,
                 to: result.content.form_sender_email,
                 subject: result.content.form_sender_subject,
-                text: `Name: ` + req.body.name + ` \nContact No: ` + req.body.contact + `\nMessage: ` + req.body.message
+                text: `Name: ` + req.body.name +  ` \nEmail: ` + req.body.email + ` \nContact No: ` + req.body.contact + `\nMessage: ` + req.body.message
             }
         
             transporter.sendMail(mailOptions, function(err, info){
