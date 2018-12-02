@@ -71,28 +71,32 @@ exports.destroy = function(req, res){
 exports.email = function(req, res){
     var nodemailer = require('nodemailer');
 
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'micmic0615@gmail.com',
-            pass: 'kupalputa909'
-        }
-    });
-
-    var mailOptions = {
-        from: req.body.email,
-        to: 'micmic0615@gmail.com',
-        subject: 'ccazz Contact-Us',
-        text: `Name: ` + req.body.name + ` \nContact No: ` + req.body.contact + `\nMessage: ` + req.body.message
-    }
-
-    transporter.sendMail(mailOptions, function(err, info){
-        if (err) {
-          console.log(err);
-          res.status(400).send(err)
+    DB["pages"].findOne({page_id: "contact_us"}).exec((err, result)=>{
+        if (!_.isNil(result) && !_.isNil(result.content)){
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: result.content.form_sender_email,
+                    pass: result.content.form_sender_passwords
+                }
+            });
+        
+            var mailOptions = {
+                from: result.content.form_sender_email,
+                to: req.body.email,
+                subject: result.content.form_sender_subject,
+                text: `Name: ` + req.body.name + ` \nContact No: ` + req.body.contact + `\nMessage: ` + req.body.message
+            }
+        
+            transporter.sendMail(mailOptions, function(err, info){
+                if (err) {
+                  res.status(400).send(err)
+                } else {
+                  res.json("success")
+                }
+            });
         } else {
-          console.log('Email sent: ' + info.response);
-          res.json("success")
+            res.status(400).send(new Error("Email Data not set"))
         }
-    });
+    })
 }
