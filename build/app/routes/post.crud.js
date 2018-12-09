@@ -73,6 +73,8 @@ exports.email = function(req, res){
 
     DB["pages"].findOne({page_id: "contact_us"}).exec((err, result)=>{
         if (!_.isNil(result) && !_.isNil(result.content)){
+            console.log(result.content.form_sender_email, result.content.form_sender_passwords)
+
             var transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
@@ -83,13 +85,14 @@ exports.email = function(req, res){
         
             var mailOptions = {
                 from: req.body.email,
-                to: result.content.form_sender_email,
+                to: "ccazzclinic@gmail.com",
                 subject: result.content.form_sender_subject,
                 text: `Name: ` + req.body.name +  ` \nEmail: ` + req.body.email + ` \nContact No: ` + req.body.contact + `\nMessage: ` + req.body.message
             }
         
             transporter.sendMail(mailOptions, function(err, info){
                 if (err) {
+                    console.log(err)
                   res.status(400).send(err)
                 } else {
                   res.json("success")
