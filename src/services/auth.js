@@ -24,3 +24,12 @@ export function validateToken(callback){
         callback(error, null)
     })
 }
+export function changePassword(params, callback){
+    var real_params = {...params}
+    real_params.token = getToken();
+    query("auth/changePassword", real_params).then((response)=>{
+        callback(response)
+    }).catch((error)=>{
+        alert("Invalid user and/or password")
+    })
+}

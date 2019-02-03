@@ -43,3 +43,25 @@ exports.validateToken = function(req, res){
     }
     
 }
+
+exports.changePassword = function(req, res){
+    if (!_.isNil(req.body.token)){
+        if (req.body.new_password == req.body.confirm_password && req.body.new_password != "" && !_.isNil(req.body.new_password)){
+            DB["users"].findOne({username: "ccazzadmin"}, (err, user)=>{
+                if (!_.isNil(user)){
+                    if (user.password == req.body.old_password){
+                        user.password = req.body.new_password;
+                        user.markModified("password");
+                        user.save(()=>{
+                            res.json("success")
+                        })
+                    } else {
+                        res.json("Wrong old password")
+                    }
+                } 
+            })
+        } else {
+            res.json("New password does not match the confirm password")
+        }
+    }
+}
