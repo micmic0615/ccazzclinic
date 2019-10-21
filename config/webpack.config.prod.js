@@ -355,6 +355,7 @@ let webpackConfig = {
     new CopyWebpackPlugin([
       { from: path.join(__dirname, '../src/assets/fonts'), to: 'fonts' },	
       { from: path.join(__dirname, '../src/assets/img'), to: 'img' },		
+      { from: path.join(__dirname, '../src/assets/csr'), to: '.well-known/pki-validation' },	
     ], {
       copyUnmodified: true
     }),
