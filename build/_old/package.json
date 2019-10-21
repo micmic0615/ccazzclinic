@@ -31,7 +31,7 @@
     "cryptr": "^3.0.0",
     "csurf": "^1.9.0",
     "edge-cs": "^1.2.1",
-    "exceljs": "^0.4.13",
+    "exceljs": "^3.2.0",
     "express": "^4.15.2",
     "express-session": "^1.15.3",
     "glob": "^7.1.1",
